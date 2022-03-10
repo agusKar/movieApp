@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2>{{ type }} movies</h2>
+        <h2 class="mb-5">Movies:</h2>
         <ListMovies :movies="movieByType"/>
       </div>
     </div>
@@ -31,7 +31,7 @@ export default {
         this.error = true;
         console.log(error);
       }
-    },
-  },
+    }
+  }
 };
 </script>

@@ -23,9 +23,11 @@ body {
     background-color: var(--oxford-blue);
     color: var(--ivory);
 }
-
+h2,h3,h4,h5,h6{
+    text-transform: capitalize;
+}
 .app {
-    margin-top: 5em;
+    margin-top: 4.5em;
 }
 nav .navbar-nav .dropdown-menu{
     background-color: var(--oxford-blue);
@@ -43,6 +45,10 @@ nav .navbar-nav .dropdown-menu li a:hover, nav .navbar-nav .dropdown-menu li a:f
 .btn-outline-red-crayola {
     color: var(--red-crayola);
     border-color: var(--red-crayola);
+}
+
+.text-red-crayola{
+    color: var(--red-crayola)!important;
 }
 
 .btn.btn-outline-red-crayola:hover {
@@ -78,4 +84,9 @@ nav a {
     -webkit-transform: scale(1.04);
     -ms-transform: scale(1.04);
     transform: scale(1.04);
+}
+
+.list-group-item-oxford-blue{
+    background-color: var(--smoky-black);
+    color: var(--ivory);
 }

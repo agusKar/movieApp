@@ -2,55 +2,77 @@
   <div>
     <b-carousel
       id="carousel-1"
-      :interval="4000"
+      :interval="6000"
       controls
       fade
       indicators
       background="#ababab"
-      img-width="1024"
-      img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
+      style="text-shadow: 1px 1px 2px #333; max-height: 450px"
     >
-      <!-- Text slides with image -->
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
-
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-        <h1>Hello world!</h1>
-      </b-carousel-slide>
-
-      <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
-
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide>
-        <template #img>
-          <img
-            class="d-block img-fluid w-100"
-            width="1024"
-            height="480"
-            src="https://picsum.photos/1024/480/?image=55"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide>
-
       <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-      <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-          a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
-        </p>
+      <b-carousel-slide
+        v-for="movie in lastMovies"
+        :key="movie.id"
+        :caption="movie.title"
+        :img-src="`http://image.tmdb.org/t/p/w1280/${movie.poster_path}`"
+        img-alt="Blank image"
+        class="img_carousel"
+      >
+        <p>{{ movie.overview }}</p>
+        <NuxtLink
+          :to="`movie/${movie.id}`"
+          class="btn btn-outline-red-crayola mb-3"
+          >See details</NuxtLink
+        >
       </b-carousel-slide>
     </b-carousel>
   </div>
 </template>
 
 <script>
-  export default {}
+import axios from "axios";
+export default {
+  data() {
+    return {
+      lastMovies: [],
+    };
+  },
+  created() {
+    this.getLastMovies();
+  },
+  methods: {
+    async getLastMovies() {
+      try {
+        let data = await axios(
+          "https://api.themoviedb.org/3/trending/movie/week?api_key=c3141c935b054ff7144cf696643fe063"
+        );
+        this.lastMovies = data.data.results.slice(0, 5);
+        console.log();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+};
 </script>
+<style scoped>
+/* CAROUSEL */
+
+.carousel-fade .carousel-item.img_carousel {
+  max-height: 450px;
+}
+
+.carousel-item.img_carousel {
+  position: relative;
+}
+.carousel-item.img_carousel:after {
+  content: "";
+  background: linear-gradient(to bottom, #ffffff00 0%, var(--oxford-blue) 100%);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+}
+</style>

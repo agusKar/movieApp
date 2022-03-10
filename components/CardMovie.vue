@@ -3,10 +3,7 @@
     <div class="movie">
       <div
         class="movie-img"
-        :style="{
-          backgroundImage:
-            'url(http://image.tmdb.org/t/p/w300/' + movie.poster_path + ')',
-        }"
+        :style="`background: url('http://image.tmdb.org/t/p/w300/${movie.poster_path}')`"
       ></div>
       <div class="text-movie-cont">
         <h4>{{ movie.title }}</h4>
