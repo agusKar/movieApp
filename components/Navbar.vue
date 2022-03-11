@@ -69,7 +69,7 @@
           <b-nav-item
             ><NuxtLink to="/top_rated">Top Rated</NuxtLink></b-nav-item
           >
-          <b-nav-item><NuxtLink to="/upcoming">Uncoming</NuxtLink></b-nav-item>
+          <b-nav-item><NuxtLink to="/upcoming">Upcoming</NuxtLink></b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

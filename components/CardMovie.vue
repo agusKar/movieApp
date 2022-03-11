@@ -65,9 +65,9 @@ export default {
 .movie-img {
   width: 100%;
   height: 380px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center!important;
+  background-repeat: no-repeat!important;
+  background-size: cover!important;
   z-index: 111 !important;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;

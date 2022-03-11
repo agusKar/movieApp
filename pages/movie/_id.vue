@@ -12,7 +12,7 @@
       <!-- end container image -->
 
       <div class="hero" :style="`background: url('http://image.tmdb.org/t/p/w1280/${movieDetail.poster_path}')`">
-        <div class="details">
+        <div class="details d-none d-sm-block">
           <div class="title1">{{ movieDetail.title }}</div>
 
           <div class="title2">{{ movieDetail.tagline }}</div>
@@ -35,8 +35,29 @@
 
       <div class="description mt-5">
         <b-container>
-          <b-row>
+          <b-row class="d-block d-sm-none mb-3">
             <b-col>
+              <div class="details">
+                <div class="title1">{{ movieDetail.title }}</div>
+
+                <div class="title2">{{ movieDetail.tagline }}</div>
+
+                <fieldset class="rating">
+                  <b-icon icon="star-fill" variant="warning"></b-icon>
+                  <b-icon icon="star-fill" variant="warning"></b-icon>
+                  <b-icon icon="star-fill" variant="warning"></b-icon>
+                  <b-icon icon="star-fill" variant="warning"></b-icon>
+                </fieldset>
+
+                <span class="likes"
+                  ><b-icon icon="heart-fill" variant="danger"></b-icon>
+                  {{ movieDetail.vote_count }} Likes</span
+                >
+              </div>
+            </b-col>
+          </b-row>
+          <b-row class="mb-3">
+            <b-col cols="12" md="2" class="mb-3">
               <b-badge
                 pill
                 variant="dark"
@@ -48,7 +69,7 @@
                 }}</NuxtLink>
               </b-badge>
             </b-col>
-            <b-col cols="10">
+            <b-col cols="12" md="10">
               <p>
                 {{ movieDetail.overview }}
               </p>
@@ -56,7 +77,7 @@
           </b-row>
           <b-row>
             <b-col>
-              <div class="avatars">
+              <div class="avatars text-center">
                 <b-avatar
                   v-for="cast in movieCredits"
                   :key="cast.id"
@@ -142,6 +163,7 @@ export default {
   z-index: 1;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  background-size: cover!important;
 }
 .hero:after {
   content: "";
@@ -249,5 +271,10 @@ export default {
 .rating > label {
   color: #ddd;
   float: right;
+}
+@media (max-width: 576px){
+  .details{
+    padding: 0;
+  }
 }
 </style>
